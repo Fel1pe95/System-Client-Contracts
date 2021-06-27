@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import db.DBException;
 import model.dao.ContractsDao;
@@ -19,7 +20,24 @@ public class ContractsJDBC implements ContractsDao {
 
 	@Override
 	public void insert(Contracts obj) {
-		// TODO Auto-generated method stub
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement(
+					"INSERT INTo contracts  (idContracts, initialDate, finalDate, totalValue) VALUES (?, ?, ?, ?)",
+					Statement.RETURN_GENERATED_KEYS);
+			st.setInt(1, obj.getContractId());
+			st.setDate(2, new java.sql.Date(obj.getInitialDate().getTime()));
+			st.setDate(3, new java.sql.Date(obj.getFinalDate().getTime()));
+			st.setDouble(4, obj.getTotalValue());
+
+			int rowsaffecteds = st.executeUpdate();
+			
+			if (rowsaffecteds > 0) {
+				System.out.println("rows affecteds: " + rowsaffecteds);
+			}
+		} catch (SQLException e) {
+			throw new DBException("unexpected Error! no rows Affected!");
+		}
 
 	}
 
@@ -36,9 +54,9 @@ public class ContractsJDBC implements ContractsDao {
 			st = conn.prepareStatement("DELETE FROM contracts WHERE idContracts = ?");
 			st.setInt(1, Id);
 			int rows = st.executeUpdate();
-			if(rows > 0) {
+			if (rows > 0) {
 				System.out.println("Rows affected: " + rows);
-			}else {
+			} else {
 				System.out.println("no lines affected!");
 			}
 		} catch (SQLException e) {
