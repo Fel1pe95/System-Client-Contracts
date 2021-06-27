@@ -31,8 +31,19 @@ public class ContractsJDBC implements ContractsDao {
 
 	@Override
 	public void removeById(Integer Id) {
-		// TODO Auto-generated method stub
-
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement("DELETE FROM contracts WHERE idContracts = ?");
+			st.setInt(1, Id);
+			int rows = st.executeUpdate();
+			if(rows > 0) {
+				System.out.println("Rows affected: " + rows);
+			}else {
+				System.out.println("no lines affected!");
+			}
+		} catch (SQLException e) {
+			throw new DBException(e.getMessage());
+		}
 	}
 
 	@Override

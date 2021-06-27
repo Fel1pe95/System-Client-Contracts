@@ -98,8 +98,8 @@ public class Contracts {
 
 	@Override
 	public String toString() {
-		return "Contracts [contractId=" + contractId + ", initialDate=" + initialDate + ", finalDate=" + finalDate
-				+ ", totalValue=" + totalValue + "]";
+		return "ContractId:" + contractId + ", initialDate:" + initialDate + ", finalDate:" + finalDate
+				+ ", totalValue:" + String.format("%.2f", totalValue);
 	}
 
 }
