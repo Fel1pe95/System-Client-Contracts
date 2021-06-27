@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import db.DB;
 import db.DBException;
 import model.dao.ContractsDao;
 import model.entities.Contracts;
@@ -31,22 +32,37 @@ public class ContractsJDBC implements ContractsDao {
 			st.setDouble(4, obj.getTotalValue());
 
 			int rowsaffecteds = st.executeUpdate();
-			
+
 			if (rowsaffecteds > 0) {
 				System.out.println("rows affecteds: " + rowsaffecteds);
 			}
 		} catch (SQLException e) {
 			throw new DBException("unexpected Error! no rows Affected!");
+		} finally {
+			DB.closeStatement(st);
 		}
-
 	}
 
 	@Override
 	public void update(Contracts obj) {
-		// TODO Auto-generated method stub
 
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement("Update contracts SET finalDate=?, totalValue=? WHERE idContracts = ?");
+
+			st.setDate(1, new java.sql.Date(obj.getFinalDate().getTime()));
+			st.setDouble(2, obj.getTotalValue());
+			st.setInt(3, obj.getContractId());
+
+			int rows = st.executeUpdate();
+			if (rows > 0) {
+				System.out.println("rows Affected: " + rows);
+			}
+
+		} catch (SQLException e) {
+			throw new DBException(e.getMessage());
+		}
 	}
-
 	@Override
 	public void removeById(Integer Id) {
 		PreparedStatement st = null;
@@ -61,6 +77,8 @@ public class ContractsJDBC implements ContractsDao {
 			}
 		} catch (SQLException e) {
 			throw new DBException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
 		}
 	}
 
@@ -85,6 +103,9 @@ public class ContractsJDBC implements ContractsDao {
 
 		} catch (SQLException e) {
 			throw new DBException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
 		}
 
 	}

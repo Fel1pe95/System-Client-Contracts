@@ -20,9 +20,14 @@ public class Test {
 		/*Deleta um contrato pelo seu endereço ID*/
 		contracts.removeById(1357425);
 		
-		/*Inere um contrato no banco de dados*/
+		/*Insere um contrato no banco de dados*/
 		//contracts.insert(new Contracts(1357425,sdf.parse("28/02/2021") , sdf.parse("03/03/2021"), 350.50));
 		
+		//atualiza um contrato
+		contract = contracts.findById(135742);
+		contract.setFinalDate(sdf.parse("25/10/2021"));
+		contract.setTotalValue(500.65);
+		contracts.update(contract);
 	}
 
 }
