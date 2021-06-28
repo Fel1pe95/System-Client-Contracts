@@ -5,6 +5,7 @@ import java.util.Date;
 public class Contracts {
 
 	private Integer contractId;
+	private Integer clientId;
 	private Date initialDate;
 	private Date finalDate;
 	private Double totalValue;
@@ -13,9 +14,10 @@ public class Contracts {
 		super();
 	}
 
-	public Contracts(Integer contractId, Date initialDate, Date finalDate, Double totalValue) {
+	public Contracts(Integer contractId,Integer clientId, Date initialDate, Date finalDate, Double totalValue) {
 		super();
 		this.contractId = contractId;
+		this.clientId = clientId;
 		this.initialDate = initialDate;
 		this.finalDate = finalDate;
 		this.totalValue = totalValue;
@@ -27,6 +29,14 @@ public class Contracts {
 
 	public void setContractId(Integer contractId) {
 		this.contractId = contractId;
+	}
+
+	public Integer getClientId() {
+		return clientId;
+	}
+
+	public void setClientId(Integer clientId) {
+		this.clientId = clientId;
 	}
 
 	public Date getInitialDate() {
@@ -57,10 +67,8 @@ public class Contracts {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((clientId == null) ? 0 : clientId.hashCode());
 		result = prime * result + ((contractId == null) ? 0 : contractId.hashCode());
-		result = prime * result + ((finalDate == null) ? 0 : finalDate.hashCode());
-		result = prime * result + ((initialDate == null) ? 0 : initialDate.hashCode());
-		result = prime * result + ((totalValue == null) ? 0 : totalValue.hashCode());
 		return result;
 	}
 
@@ -73,32 +81,22 @@ public class Contracts {
 		if (getClass() != obj.getClass())
 			return false;
 		Contracts other = (Contracts) obj;
+		if (clientId == null) {
+			if (other.clientId != null)
+				return false;
+		} else if (!clientId.equals(other.clientId))
+			return false;
 		if (contractId == null) {
 			if (other.contractId != null)
 				return false;
 		} else if (!contractId.equals(other.contractId))
-			return false;
-		if (finalDate == null) {
-			if (other.finalDate != null)
-				return false;
-		} else if (!finalDate.equals(other.finalDate))
-			return false;
-		if (initialDate == null) {
-			if (other.initialDate != null)
-				return false;
-		} else if (!initialDate.equals(other.initialDate))
-			return false;
-		if (totalValue == null) {
-			if (other.totalValue != null)
-				return false;
-		} else if (!totalValue.equals(other.totalValue))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "ContractId:" + contractId + ", initialDate:" + initialDate + ", finalDate:" + finalDate
+		return "ContractId:" + contractId + "ClientID: "+ clientId + ", initialDate:" + initialDate + ", finalDate:" + finalDate
 				+ ", totalValue:" + String.format("%.2f", totalValue);
 	}
 

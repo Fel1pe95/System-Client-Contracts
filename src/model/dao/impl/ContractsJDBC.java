@@ -24,12 +24,13 @@ public class ContractsJDBC implements ContractsDao {
 		PreparedStatement st = null;
 		try {
 			st = conn.prepareStatement(
-					"INSERT INTo contracts  (idContracts, initialDate, finalDate, totalValue) VALUES (?, ?, ?, ?)",
+					"INSERT INTo contracts  (idContracts, clientId, initialDate, finalDate, totalValue) VALUES (?, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
 			st.setInt(1, obj.getContractId());
-			st.setDate(2, new java.sql.Date(obj.getInitialDate().getTime()));
-			st.setDate(3, new java.sql.Date(obj.getFinalDate().getTime()));
-			st.setDouble(4, obj.getTotalValue());
+			st.setInt(2, obj.getClientId());
+			st.setDate(3, new java.sql.Date(obj.getInitialDate().getTime()));
+			st.setDate(4, new java.sql.Date(obj.getFinalDate().getTime()));
+			st.setDouble(5, obj.getTotalValue());
 
 			int rowsaffecteds = st.executeUpdate();
 
@@ -63,6 +64,7 @@ public class ContractsJDBC implements ContractsDao {
 			throw new DBException(e.getMessage());
 		}
 	}
+	
 	@Override
 	public void removeById(Integer Id) {
 		PreparedStatement st = null;

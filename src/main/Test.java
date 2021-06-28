@@ -1,33 +1,23 @@
 package main;
 
+import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Scanner;
 
-import model.dao.ContractsDao;
+import model.dao.ClientDao;
 import model.dao.DaoFactory;
+import model.entities.Client;
 import model.entities.Contracts;
 
 public class Test {
 
 	public static void main(String[] args) throws ParseException {
 
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		/* encontra um contrato pelo seu endereço ID */
-		ContractsDao contracts = DaoFactory.createContractsJDBC();
-		Contracts contract = contracts.findById(1234);
-		System.out.println(contract);
-
-		/*Deleta um contrato pelo seu endereço ID*/
-		contracts.removeById(1357425);
 		
-		/*Insere um contrato no banco de dados*/
-		//contracts.insert(new Contracts(1357425,sdf.parse("28/02/2021") , sdf.parse("03/03/2021"), 350.50));
 		
-		//atualiza um contrato
-		contract = contracts.findById(135742);
-		contract.setFinalDate(sdf.parse("25/10/2021"));
-		contract.setTotalValue(500.65);
-		contracts.update(contract);
+		
+		
 	}
 
 }

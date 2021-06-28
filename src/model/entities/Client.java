@@ -1,25 +1,36 @@
 package model.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Client {
-	
+
 	private String name;
 	private String email;
 	private Integer cpf;
 	private Integer registration;
-	
+	private List<Contracts> list = new ArrayList<>();
+
 	private Contracts contracts;
-	
+
 	public Client() {
 		super();
 	}
 
-	public Client(String name, String email, Integer cpf, Integer registration, Contracts contracts) {
+	public Client(String name, String email, Integer cpf, Integer registration) {
 		super();
 		this.name = name;
 		this.email = email;
 		this.cpf = cpf;
 		this.registration = registration;
-		this.contracts = contracts;
+	}
+
+	public List<Contracts> getList() {
+		return list;
+	}
+
+	public void setList(List<Contracts> list) {
+		this.list = list;
 	}
 
 	public String getName() {
@@ -62,11 +73,14 @@ public class Client {
 		this.contracts = contracts;
 	}
 
+	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
+		result = prime * result + (int) (cpf ^ (cpf >>> 32));
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((registration == null) ? 0 : registration.hashCode());
 		return result;
@@ -81,10 +95,12 @@ public class Client {
 		if (getClass() != obj.getClass())
 			return false;
 		Client other = (Client) obj;
-		if (cpf == null) {
-			if (other.cpf != null)
+		if (cpf != other.cpf)
+			return false;
+		if (email == null) {
+			if (other.email != null)
 				return false;
-		} else if (!cpf.equals(other.cpf))
+		} else if (!email.equals(other.email))
 			return false;
 		if (name == null) {
 			if (other.name != null)
@@ -101,14 +117,7 @@ public class Client {
 
 	@Override
 	public String toString() {
-		return "Client [name=" + name + ", email=" + email + ", cpf=" + cpf + ", registration=" + registration
-				+ ", contracts=" + contracts + "]";
+		return "Name:" + name + ", email:" + email + ", cpf:" + cpf + ", registration:" + registration;
 	}
-
-	
-	
-	
-	
-	
 
 }

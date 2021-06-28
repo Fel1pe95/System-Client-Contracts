@@ -11,7 +11,6 @@ public interface ClientDao {
 	void removeByRegistration(Integer registration);
 	Client findByRegistration(Integer registration);
 	List<Client>findAll();
-	List<Client>findByContracts();
 	
 	
 }
