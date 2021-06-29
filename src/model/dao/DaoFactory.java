@@ -7,12 +7,12 @@ import model.dao.impl.ProductJDBC;
 
 public class DaoFactory {
 
-	public static ContractsDao createContractsJDBC() {
+	public static ContractsDao createContractsDao() {
 		
 		return new ContractsJDBC(DB.getConnection());
 	}
 	
-	public static ClientDao createClientJDBC() {
+	public static ClientDao createClientDao() {
 		
 		return new ClientJDBC(DB.getConnection());
 	}
