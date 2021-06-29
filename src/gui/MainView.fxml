@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewControler">
+   <children>
+      <Pane prefHeight="500.0" prefWidth="205.0">
+         <children>
+            <Button fx:id="buttonRegister" layoutX="13.0" layoutY="97.0" mnemonicParsing="false" onAction="#onButtonRegisterAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFA500;" text="Cadastrar " />
+            <Button fx:id="buttonNewContract" layoutX="13.0" layoutY="130.0" mnemonicParsing="false" onAction="#onButtonNewContractAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFA500;" text="Novo contrato" />
+            <Button fx:id="buttonClientData" layoutX="12.0" layoutY="163.0" mnemonicParsing="false" onAction="#onButtonClientDataAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFA500;" text="Dados do cliente" />
+            <Button fx:id="buttonContractUpdate" layoutX="12.0" layoutY="197.0" mnemonicParsing="false" onAction="#onButtonContractUpdateAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFA500;" text="Atualização de contrato" />
+            <Button fx:id="buttonCloseApp" layoutX="13.0" layoutY="381.0" mnemonicParsing="false" onAction="#onButtonCloseAppAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFA500;" text="Sair" />
+         </children>
+      </Pane>
+      <Pane layoutX="200.0" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #FAFAD2;">
+         <children>
+            <Label fx:id="labelInformation" alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="108.0" prefHeight="86.0" prefWidth="268.0" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Narrow" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
