@@ -3,6 +3,7 @@ package model.dao;
 import db.DB;
 import model.dao.impl.ClientJDBC;
 import model.dao.impl.ContractsJDBC;
+import model.dao.impl.ProductJDBC;
 
 public class DaoFactory {
 
@@ -14,5 +15,9 @@ public class DaoFactory {
 	public static ClientDao createClientJDBC() {
 		
 		return new ClientJDBC(DB.getConnection());
+	}
+	
+	public static ProductDao createProductDao() {
+		return new ProductJDBC(DB.getConnection());
 	}
 }

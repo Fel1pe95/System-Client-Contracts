@@ -19,6 +19,7 @@ public class Main extends Application {
 			mainScene = new Scene(anchor);
 			primaryStage.setScene(mainScene);
 			primaryStage.setTitle("Sample javaFX application");
+			primaryStage.setResizable(false);
 			primaryStage.show();
 
 		} catch (Exception e) {

@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -10,11 +11,13 @@
    <children>
       <Pane prefHeight="500.0" prefWidth="205.0">
          <children>
-            <Button fx:id="buttonRegister" layoutX="13.0" layoutY="97.0" mnemonicParsing="false" onAction="#onButtonRegisterAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFA500;" text="Cadastrar " />
-            <Button fx:id="buttonNewContract" layoutX="13.0" layoutY="130.0" mnemonicParsing="false" onAction="#onButtonNewContractAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFA500;" text="Novo contrato" />
+            <Button fx:id="buttonRegister" layoutX="13.0" layoutY="97.0" mnemonicParsing="false" onAction="#onButtonRegisterAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFA500;" text="Cadastrar cliente" />
+            <Button fx:id="buttonNewProduct" layoutX="13.0" layoutY="130.0" mnemonicParsing="false" onAction="#onButtonNewProductAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFA500;" text="Cadastrar produto" />
             <Button fx:id="buttonClientData" layoutX="12.0" layoutY="163.0" mnemonicParsing="false" onAction="#onButtonClientDataAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFA500;" text="Dados do cliente" />
             <Button fx:id="buttonContractUpdate" layoutX="12.0" layoutY="197.0" mnemonicParsing="false" onAction="#onButtonContractUpdateAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFA500;" text="Atualização de contrato" />
             <Button fx:id="buttonCloseApp" layoutX="13.0" layoutY="381.0" mnemonicParsing="false" onAction="#onButtonCloseAppAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFA500;" text="Sair" />
+            <Button fx:id="buttonProductConsult" layoutX="13.0" layoutY="231.0" mnemonicParsing="false" onAction="#onButtonProductConsultAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFA500;" text="Consultar produto" />
+            <ImageView fx:id="logo" fitHeight="74.0" fitWidth="180.0" layoutX="12.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
       <Pane layoutX="200.0" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #FAFAD2;">
