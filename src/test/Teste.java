@@ -18,6 +18,9 @@ public class Teste {
 		for(Product p : list) {
 			System.out.println(p);
 		}
+		
+		Product p = product.findById(550);
+		System.out.println(p);
 	}
 
 }

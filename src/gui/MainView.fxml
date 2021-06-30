@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewControler">
+<AnchorPane prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewController">
    <children>
       <Pane prefHeight="500.0" prefWidth="205.0">
          <children>
@@ -20,7 +20,7 @@
             <ImageView fx:id="logo" fitHeight="74.0" fitWidth="180.0" layoutX="12.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Pane layoutX="200.0" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #FAFAD2;">
+      <Pane fx:id="rightPane" layoutX="200.0" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #FAFAD2;">
          <children>
             <Label fx:id="labelInformation" alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="108.0" prefHeight="86.0" prefWidth="268.0" textAlignment="CENTER">
                <font>

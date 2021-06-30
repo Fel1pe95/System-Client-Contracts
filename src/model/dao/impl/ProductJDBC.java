@@ -90,7 +90,7 @@ public class ProductJDBC implements ProductDao {
 				Product product = new Product();
 				product.setName(rs.getString("productName"));
 				product.setId(rs.getInt("productId"));
-				product.setValue(rs.getDouble("productValeu"));
+				product.setValue(rs.getDouble("productValue"));
 				
 				return product;
 			}
