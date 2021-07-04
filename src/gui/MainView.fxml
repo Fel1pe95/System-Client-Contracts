@@ -5,29 +5,21 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewController">
+<AnchorPane prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #FAFAD2;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewController">
    <children>
-      <Pane prefHeight="500.0" prefWidth="205.0">
+      <Pane prefHeight="500.0" prefWidth="205.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <Button fx:id="buttonRegister" layoutX="13.0" layoutY="97.0" mnemonicParsing="false" onAction="#onButtonRegisterAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFA500;" text="Cadastrar cliente" />
-            <Button fx:id="buttonNewProduct" layoutX="13.0" layoutY="130.0" mnemonicParsing="false" onAction="#onButtonNewProductAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFA500;" text="Cadastrar produto" />
-            <Button fx:id="buttonClientData" layoutX="12.0" layoutY="163.0" mnemonicParsing="false" onAction="#onButtonClientDataAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFA500;" text="Dados do cliente" />
-            <Button fx:id="buttonContractUpdate" layoutX="12.0" layoutY="197.0" mnemonicParsing="false" onAction="#onButtonContractUpdateAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFA500;" text="Atualização de contrato" />
+            <Button fx:id="buttonRegister" layoutX="13.0" layoutY="97.0" mnemonicParsing="false" onAction="#onButtonRegisterAction" onMouseEntered="#onButtonRegisterEnteredMouse" onMouseExited="#onButtonExited" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFA500;" text="Cadastrar cliente" />
+            <Button fx:id="buttonNewProduct" layoutX="13.0" layoutY="130.0" mnemonicParsing="false" onAction="#onButtonNewProductAction" onMouseEntered="#onButtonNewProductEnteredMouse" onMouseExited="#onButtonExited" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFA500;" text="Cadastrar produto" />
+            <Button fx:id="buttonClientData" layoutX="12.0" layoutY="163.0" mnemonicParsing="false" onAction="#onButtonClientDataAction" onMouseEntered="#onButtonClientEnteredMouse" onMouseExited="#onButtonExited" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFA500;" text="Cliente" />
+            <Button fx:id="buttonContractUpdate" layoutX="12.0" layoutY="197.0" mnemonicParsing="false" onAction="#onButtonContractUpdateAction" onMouseEntered="#onButtonContractUpdateEnteredMouse" onMouseExited="#onButtonExited" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFA500;" text="Atualização de contrato" />
             <Button fx:id="buttonCloseApp" layoutX="13.0" layoutY="381.0" mnemonicParsing="false" onAction="#onButtonCloseAppAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFA500;" text="Sair" />
-            <Button fx:id="buttonProductConsult" layoutX="13.0" layoutY="231.0" mnemonicParsing="false" onAction="#onButtonProductConsultAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFA500;" text="Consultar produto" />
+            <Button fx:id="buttonProductConsult" layoutX="13.0" layoutY="231.0" mnemonicParsing="false" onAction="#onButtonProductConsultAction" onMouseEntered="#onButtonConsultEnteredMouse" onMouseExited="#onButtonExited" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFA500;" text="Consultar produto" />
             <ImageView fx:id="logo" fitHeight="74.0" fitWidth="180.0" layoutX="12.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="labelInformation" alignment="CENTER" layoutX="13.0" layoutY="273.0" prefHeight="94.0" prefWidth="180.0" textAlignment="CENTER" textFill="#e40707" wrapText="true" />
          </children>
       </Pane>
-      <Pane fx:id="rightPane" layoutX="200.0" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #FAFAD2;">
-         <children>
-            <Label fx:id="labelInformation" alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="108.0" prefHeight="86.0" prefWidth="268.0" textAlignment="CENTER">
-               <font>
-                  <Font name="Arial Narrow" size="20.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
+      <Pane fx:id="MainRightPane" layoutX="205.0" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #FAFAD2;" />
    </children>
 </AnchorPane>

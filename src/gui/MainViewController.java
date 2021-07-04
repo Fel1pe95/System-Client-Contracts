@@ -4,21 +4,17 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.Main;
+import gui.util.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class MainViewController implements Initializable {
 	@FXML
@@ -38,7 +34,7 @@ public class MainViewController implements Initializable {
 	@FXML
 	private Label labelInformation;
 	@FXML
-	private Pane rightPane;
+	private Pane MainRightPane;
 
 	@FXML
 	public void onButtonRegisterAction() {
@@ -47,10 +43,12 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	public void onButtonNewProductAction() {
+		LoadView("/gui/NewProductView.fxml");
 	}
 
 	@FXML
 	public void onButtonClientDataAction() {
+		LoadView("ClientDataView.fxml");
 	}
 
 	@FXML
@@ -62,17 +60,46 @@ public class MainViewController implements Initializable {
 	}
 
 	@FXML
-	public void onButtonCloseAppAction() {
+	public void onButtonCloseAppAction(ActionEvent event) {
+		Stage stage = Utils.currentStage(event);
+		stage.close();
 	}
 
+	@FXML
+	public void onButtonRegisterEnteredMouse() {
+		labelInformation.setText("Clique para cadastrar um novo cliente.");
+	}
+	@FXML
+	public void onButtonNewProductEnteredMouse() {
+		labelInformation.setText("Clique para cadastrar um novo produto.");
+	}
+	@FXML
+	public void onButtonClientEnteredMouse() {
+		labelInformation.setText("Clique para verificar os dados de um cliente.");
+	}
+	@FXML
+	public void onButtonContractUpdateEnteredMouse() {
+		labelInformation.setText("Clique para atualizar um contrato.");
+	}
+	@FXML
+	public void onButtonConsultEnteredMouse() {
+		labelInformation.setText("Clique para consultar os dados de um produto");
+	}
+	
+	@FXML
+	public void onButtonExited() {
+		labelInformation.setText("");
+	}
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		setImage();
+		setImage("logo.jpg", logo);
+		
 	}
 
-	public void setImage() {
-		Image imagem = new Image("logo.jpg");
-		logo.setImage(imagem);
+	public void setImage(String image, ImageView view) {
+		Image imagem = new Image(image);
+		view.setImage(imagem);
 		if (imagem != null) {
 			double w = 0;
 			double h = 0;
@@ -96,12 +123,15 @@ public class MainViewController implements Initializable {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
 			Pane newPane = loader.load();
-			Pane mainPane = rightPane;
-			mainPane.getChildren().clear();
-			mainPane.getChildren().addAll(newPane.getChildren());
+			MainRightPane.getChildren().clear();	
+			MainRightPane.getChildren().addAll(newPane);
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public Pane getPane() {
+		return MainRightPane;
 	}
 }

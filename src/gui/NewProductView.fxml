@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<Pane fx:id="newProductPane" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.NewProductViewController">
+   <children>
+      <GridPane layoutX="20.0" layoutY="39.0" prefHeight="168.0" prefWidth="369.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="111.0" minWidth="10.0" prefWidth="48.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="205.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="89.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="79.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="62.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="97.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Produto:" />
+            <Label text="Código:" GridPane.rowIndex="1" />
+            <Label text="Preço:" GridPane.rowIndex="2" />
+            <TextField fx:id="txtName" GridPane.columnIndex="1" />
+            <TextField fx:id="txtId" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtValue" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label textFill="#f50707" GridPane.columnIndex="2" />
+            <Label textFill="#f80101" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label textFill="#e40606" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+      <Button fx:id="btSave" layoutX="81.0" layoutY="401.0" mnemonicParsing="false" onAction="#onBtSaveAction" text="Cadastrar" />
+      <Button fx:id="btCancel" layoutX="169.0" layoutY="401.0" mnemonicParsing="false" onAction="#onBtCancelAction" text="Cancelar" />
+   </children>
+</Pane>
