@@ -3,6 +3,7 @@ package gui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
 import gui.util.Utils;
 import javafx.event.ActionEvent;
@@ -15,6 +16,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.service.ClientService;
+import model.service.ProductService;
 
 public class MainViewController implements Initializable {
 	@FXML
@@ -38,17 +41,23 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	public void onButtonRegisterAction() {
-		LoadView("/gui/NewClientView.fxml");
+		LoadView("/gui/NewClientView.fxml", (NewClientViewController controller) -> {
+			controller.setService(new ClientService());
+		});
 	}
 
 	@FXML
 	public void onButtonNewProductAction() {
-		LoadView("/gui/NewProductView.fxml");
+		LoadView("/gui/NewProductView.fxml", (NewProductViewController controller) -> {
+			controller.setService(new ProductService());
+		});
 	}
 
 	@FXML
 	public void onButtonClientDataAction() {
-		LoadView("ClientDataView.fxml");
+		LoadView("ClientDataView.fxml", (ClientDataViewController controller) -> {
+			controller.setService(new ClientService());
+		});
 	}
 
 	@FXML
@@ -69,32 +78,36 @@ public class MainViewController implements Initializable {
 	public void onButtonRegisterEnteredMouse() {
 		labelInformation.setText("Clique para cadastrar um novo cliente.");
 	}
+
 	@FXML
 	public void onButtonNewProductEnteredMouse() {
 		labelInformation.setText("Clique para cadastrar um novo produto.");
 	}
+
 	@FXML
 	public void onButtonClientEnteredMouse() {
 		labelInformation.setText("Clique para verificar os dados de um cliente.");
 	}
+
 	@FXML
 	public void onButtonContractUpdateEnteredMouse() {
 		labelInformation.setText("Clique para atualizar um contrato.");
 	}
+
 	@FXML
 	public void onButtonConsultEnteredMouse() {
 		labelInformation.setText("Clique para consultar os dados de um produto");
 	}
-	
+
 	@FXML
 	public void onButtonExited() {
 		labelInformation.setText("");
 	}
-	
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		setImage("logo.jpg", logo);
-		
+
 	}
 
 	public void setImage(String image, ImageView view) {
@@ -118,13 +131,15 @@ public class MainViewController implements Initializable {
 		}
 	}
 
-	public void LoadView(String view) {
+	private synchronized <T> void LoadView(String view, Consumer<T> initializingAction) {
 
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
 			Pane newPane = loader.load();
-			MainRightPane.getChildren().clear();	
+			MainRightPane.getChildren().clear();
 			MainRightPane.getChildren().addAll(newPane);
+			T controller = loader.getController();
+			initializingAction.accept(controller);
 
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -9,6 +9,8 @@ import java.util.List;
 
 import db.DB;
 import db.DBException;
+import gui.util.Alerts;
+import javafx.scene.control.Alert.AlertType;
 import model.dao.ProductDao;
 import model.entities.Product;
 
@@ -31,9 +33,11 @@ public class ProductJDBC implements ProductDao {
 
 			int rows = st.executeUpdate();
 			if (rows > 0) {
+				Alerts.showAlert("Cadastro de produtos", null, "Produto cadastrado com sucesso!", AlertType.INFORMATION);
 				System.out.println("Product registered sucefully!");
 			}
 		} catch (SQLException e) {
+			Alerts.showAlert("SQL Exception!", null, "erro ao cadastrar produto!", null);
 			throw new DBException(e.getMessage());
 		} finally {
 			DB.closeStatement(st);

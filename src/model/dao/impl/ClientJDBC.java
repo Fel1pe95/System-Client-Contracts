@@ -9,17 +9,19 @@ import java.util.List;
 
 import db.DB;
 import db.DBException;
+import gui.util.Alerts;
+import javafx.scene.control.Alert.AlertType;
 import model.dao.ClientDao;
 import model.entities.Client;
 
-public class ClientJDBC implements ClientDao{
+public class ClientJDBC implements ClientDao {
 
 	private Connection conn;
-	
+
 	public ClientJDBC(Connection conn) {
-		this.conn=conn;
+		this.conn = conn;
 	}
-	
+
 	@Override
 	public void insert(Client obj) {
 		PreparedStatement st = null;
@@ -30,12 +32,14 @@ public class ClientJDBC implements ClientDao{
 			st.setLong(3, obj.getCpf());
 			st.setInt(4, obj.getRegistration());
 			int rows = st.executeUpdate();
-			if(rows>0) {System.out.println("customer registered sucefully!");}
-		}catch(SQLException e) {
-			throw new DBException(e.getMessage());
-		}finally {
+			if (rows > 0) {
+				Alerts.showAlert("Cadastro", null, "Cliente cadastrado com sucesso", AlertType.INFORMATION);
+			}
+		} catch (SQLException e) {
+			Alerts.showAlert("SQLException", null, e.getMessage(),AlertType.ERROR);
+		} finally {
 			DB.closeStatement(st);
-		}		
+		}
 	}
 
 	@Override
@@ -43,22 +47,22 @@ public class ClientJDBC implements ClientDao{
 
 		PreparedStatement st = null;
 		try {
-			st = conn.prepareStatement("UPDATE client SET name=?, SET email=?, SET cpf=? WHERE registration = ?");
-			
+			st = conn.prepareStatement("UPDATE client SET name=?, email=?, cpf=? WHERE registration = ?");
+
 			st.setString(1, obj.getName());
 			st.setString(2, obj.getEmail());
 			st.setInt(3, obj.getCpf());
 			st.setInt(4, obj.getRegistration());
-			
+
 			int rows = st.executeUpdate();
-			if(rows > 0 ) {
+			if (rows > 0) {
 				System.out.println("rows affecteds: " + rows);
 			}
-		}catch(SQLException e) {
-			throw new DBException(e.getMessage());
-		}finally {
+		} catch (SQLException e) {
+			Alerts.showAlert("SQLEException", null, e.getMessage(), AlertType.ERROR);;
+		} finally {
 			DB.closeStatement(st);
-		}		
+		}
 	}
 
 	@Override
@@ -68,12 +72,12 @@ public class ClientJDBC implements ClientDao{
 			st = conn.prepareStatement("DELETE FROM client WHERE registration = ?");
 			st.setInt(1, registration);
 			int rows = st.executeUpdate();
-			if(rows > 0) {
+			if (rows > 0) {
 				System.out.println("rows affected: " + rows);
 			}
-		}catch(SQLException e) {
-			throw new DBException(e.getMessage());
-		}finally {
+		} catch (SQLException e) {
+			Alerts.showAlert("SQLException", null, e.getMessage(), AlertType.ERROR);
+		} finally {
 			DB.closeStatement(st);
 		}
 	}
@@ -86,7 +90,7 @@ public class ClientJDBC implements ClientDao{
 			st = conn.prepareStatement("SELECT * FROM client WHERE registration = ?");
 			st.setInt(1, registration);
 			rs = st.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				Client client = new Client();
 				client.setName(rs.getString("name"));
 				client.setEmail(rs.getString("email"));
@@ -95,9 +99,9 @@ public class ClientJDBC implements ClientDao{
 				return client;
 			}
 			return null;
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			throw new DBException(e.getMessage());
-		}finally {
+		} finally {
 			DB.closeStatement(st);
 			DB.closeResultSet(rs);
 		}
@@ -110,21 +114,20 @@ public class ClientJDBC implements ClientDao{
 		try {
 			st = conn.prepareStatement("SELECT * FROM client");
 			rs = st.executeQuery();
-			List<Client>list = new ArrayList<>();
-			while(rs.next()) {
+			List<Client> list = new ArrayList<>();
+			while (rs.next()) {
 				Client client = InstatiateClient(rs);
 				list.add(client);
 			}
 			return list;
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			throw new DBException(e.getMessage());
-		}finally {
+		} finally {
 			DB.closeStatement(st);
 			DB.closeResultSet(rs);
 		}
 	}
 
-	
 	public Client InstatiateClient(ResultSet rs) throws SQLException {
 		Client obj = new Client();
 		obj.setName(rs.getString("name"));

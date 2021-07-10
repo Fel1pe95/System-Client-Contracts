@@ -34,7 +34,7 @@
                      </font>
                   </Label>
                   <TextField fx:id="txtRegistration" GridPane.columnIndex="1" />
-                  <Label GridPane.columnIndex="2" />
+                  <Label fx:id="lbError" textFill="#f80707" wrapText="true" GridPane.columnIndex="2" />
                   <SplitPane dividerPositions="0.5" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <items>
                         <Button fx:id="btFind" mnemonicParsing="false" onAction="#onBtFindAction" prefHeight="25.0" prefWidth="113.0" style="-fx-background-color: #FFA500;" text="buscar" />
