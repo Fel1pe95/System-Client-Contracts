@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import db.DB;
 import db.DBException;
@@ -110,6 +112,39 @@ public class ContractsJDBC implements ContractsDao {
 			DB.closeResultSet(rs);
 		}
 
+	}
+
+	@Override
+	public List<Contracts> findAllByIdClient(Integer id) {
+		
+			PreparedStatement st = null;
+			ResultSet rs = null;
+			try {
+				st = conn.prepareStatement("SELECT * FROM client");
+				rs = st.executeQuery();
+				List<Contracts> list = new ArrayList<>();
+				while (rs.next()) {
+					Contracts contract = InstatiateContract(rs);
+					list.add(contract);
+				}
+				return list;
+			} catch (SQLException e) {
+				throw new DBException(e.getMessage());
+			} finally {
+				DB.closeStatement(st);
+				DB.closeResultSet(rs);
+			
+			}
+	}
+	
+	public Contracts InstatiateContract(ResultSet rs) throws SQLException {
+		Contracts obj = new Contracts();
+		obj.setContractId(rs.getInt("idConstracts"));
+		obj.setClientId(rs.getInt("clientId"));
+		obj.setInitialDate(new java.util.Date(rs.getTimestamp("initialDate").getTime()));
+		obj.setFinalDate(new java.util.Date(rs.getTimestamp("finalDate").getTime()));
+		obj.setTotalValue(rs.getDouble("totalValue"));
+		return obj;
 	}
 
 }

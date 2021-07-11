@@ -1,24 +1,34 @@
 package gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
 import gui.util.Alerts;
 import gui.util.Constraints;
+import gui.util.Utils;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.entities.Client;
 import model.service.ClientService;
 
@@ -42,6 +52,8 @@ public class ClientDataViewController implements Initializable {
 	@FXML
 	private Button btCancel;
 	@FXML
+	private Button btClear;
+	@FXML
 	private TableView<Client> tableViewClient;
 
 	@FXML
@@ -52,9 +64,11 @@ public class ClientDataViewController implements Initializable {
 	private TableColumn<Client, Integer> tableColumnCpf;
 	@FXML
 	private TableColumn<Client, Integer> tableColumnRegistration;
+	@FXML
+	private TableColumn<Client, Client> tableColumnNewContract;
 
 	private ObservableList<Client> obsList;
-	
+
 	@FXML
 	private Label lbError;
 
@@ -69,6 +83,12 @@ public class ClientDataViewController implements Initializable {
 	@FXML
 	public void onBtCancelAction() {
 		MainRightPaneClientData.setVisible(false);
+	}
+
+	@FXML
+	private void onBtClearAction() {
+		txtRegistration.setText("");
+		updateTableView(service);
 	}
 
 	@Override
@@ -122,6 +142,50 @@ public class ClientDataViewController implements Initializable {
 		tableColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 		tableColumnCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
 		tableColumnRegistration.setCellValueFactory(new PropertyValueFactory<>("registration"));
+		initNewContractButton();
+	}
+	
+	private void initNewContractButton() {
+		tableColumnNewContract.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+		tableColumnNewContract.setCellFactory(param -> new TableCell<Client, Client>() {
+			private final Button button = new Button("Novo contrato");
+
+			@Override
+			protected void updateItem(Client obj, boolean empty) {
+				super.updateItem(obj, empty);
+				if (obj == null) {
+					setGraphic(null);
+					return;
+				}
+				setGraphic(button);
+				button.setOnAction(event -> LoadViewNewContatc(obj, "/gui/NewContractView.fxml",Utils.currentStage(event), (NewContractViewController controller) -> {
+					controller.setService(new ClientService());
+				}));
+			}
+		});
 	}
 
-}
+	private synchronized <T> void LoadViewNewContatc(Client obj, String view,Stage parentStage, Consumer<T> initializingAction) {
+			try {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
+				Pane newPane = loader.load();
+				Scene scene = new Scene(newPane);
+				Stage stage = new Stage();
+				stage.setScene(scene);
+				stage.setResizable(false);
+				stage.setTitle("Dados para novo Contrato");
+				stage.initOwner(parentStage);
+				stage.initModality(Modality.WINDOW_MODAL);
+				stage.showAndWait();
+			
+				T controller = loader.getController();
+				initializingAction.accept(controller);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	
+	}
+
+

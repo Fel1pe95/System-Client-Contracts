@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="MainRightPaneClientData" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #FAFAD2;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ClientDataViewController">
+<VBox fx:id="MainRightPaneProductData" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #FAFAD2;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ProductDataViewController">
    <children>
       <ScrollPane prefHeight="96.0" prefWidth="400.0" style="-fx-background-color: #FAFAD2;">
          <content>
@@ -28,12 +28,12 @@
                 <RowConstraints maxHeight="26.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="   matricula:">
+                  <Label text="    Código:">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtRegistration" GridPane.columnIndex="1" />
+                  <TextField fx:id="txtId" GridPane.columnIndex="1" />
                   <Label fx:id="lbError" textFill="#f80707" wrapText="true" GridPane.columnIndex="2" />
                   <SplitPane dividerPositions="0.5, 0.5" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <items>
@@ -46,13 +46,11 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <TableView fx:id="tableViewClient" prefHeight="463.0" prefWidth="400.0" style="-fx-background-color: #FAFAD2;">
+      <TableView fx:id="tableViewProduct" prefHeight="463.0" prefWidth="400.0" style="-fx-background-color: #FAFAD2;">
         <columns>
-          <TableColumn fx:id="tableColumnName" prefWidth="75.0" text="Nome" />
-          <TableColumn fx:id="tableColumnEmail" prefWidth="75.0" text="Email" />
-            <TableColumn fx:id="tableColumnCpf" prefWidth="75.0" text="cpf" />
-            <TableColumn fx:id="tableColumnRegistration" prefWidth="75.0" text="matricula" />
-            <TableColumn fx:id="tableColumnNewContract" prefWidth="75.0" />
+          <TableColumn fx:id="tableColumnCod" prefWidth="95.0" text="Código" />
+          <TableColumn fx:id="tableColumnName" prefWidth="89.0" text="Produto" />
+            <TableColumn fx:id="tableColumnValue" prefWidth="98.0" text="Valor R$" />
         </columns>
       </TableView>
    </children>

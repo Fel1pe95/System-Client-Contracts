@@ -66,6 +66,9 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	private void onButtonProductConsultAction() {
+		LoadView("ProductDataView.fxml", (ProductDataViewController controller) -> {
+			controller.setService(new ProductService());
+		});
 	}
 
 	@FXML
