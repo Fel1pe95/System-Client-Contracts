@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -10,21 +13,20 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #FFFFFF;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="gui.NewContractViewController">
+<Pane prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.NewContractViewController">
    <children>
-      <GridPane layoutX="15.0" layoutY="41.0" prefHeight="256.0" prefWidth="352.0">
+      <GridPane layoutX="8.0" layoutY="22.0" prefHeight="218.0" prefWidth="384.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.0" minWidth="10.0" prefWidth="114.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.0" minWidth="10.0" prefWidth="238.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.0" minWidth="10.0" prefWidth="122.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="286.0" minWidth="10.0" prefWidth="221.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="286.0" minWidth="10.0" prefWidth="44.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="102.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="118.0" minHeight="0.0" prefHeight="41.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="149.0" minHeight="0.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="169.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="171.0" minHeight="0.0" prefHeight="46.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="Matricula do client:" />
@@ -35,18 +37,37 @@
             <DatePicker fx:id="datePickerInitialDate" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="Data final:" GridPane.rowIndex="4" />
             <DatePicker fx:id="datePickerFinalDate" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label text="Valor do contrato:" GridPane.rowIndex="5" />
-            <TextField fx:id="txtContractValue" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Label text="Codigo do produto:" GridPane.rowIndex="1" />
             <Label text="Quantidade:" GridPane.rowIndex="2" />
+            <Button fx:id="btAddProduct" mnemonicParsing="false" onAction="#onBtAddProductAction" prefHeight="20.0" prefWidth="30.0" style="-fx-background-color: #FFA500;" text="+" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+            </Button>
          </children>
       </GridPane>
-      <Label fx:id="erroMenssage" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="334.0" prefHeight="42.0" prefWidth="316.0" text="Mensagem de erro!" textAlignment="CENTER" textFill="#f20404">
+      <Label fx:id="erroMenssage" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="446.0" prefHeight="42.0" prefWidth="316.0" text="Mensagem de erro!" textAlignment="CENTER" textFill="#f20404">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
       <Button fx:id="btSave" layoutX="130.0" layoutY="421.0" mnemonicParsing="false" onAction="#onBtSaveAction" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #FFA500;" text="Salvar" />
       <Button fx:id="btCancel" layoutX="214.0" layoutY="421.0" mnemonicParsing="false" onAction="#onBtCancelAction" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #FFA500;" text="Cancelar" />
+      <Label layoutX="14.0" layoutY="380.0" text="Valor do contrato:" />
+      <TextField fx:id="txtContractValue" layoutX="126.0" layoutY="376.0" prefHeight="25.0" prefWidth="220.0" />
+      <TableView fx:id="tableViewLocations" layoutX="40.0" layoutY="240.0" prefHeight="118.0" prefWidth="321.0">
+        <columns>
+          <TableColumn fx:id="tableColumnCod" prefWidth="49.0" text="Cod" />
+          <TableColumn fx:id="tableColumnProduct" prefWidth="101.0" text="Produto" />
+            <TableColumn fx:id="tableColumnQuantity" prefWidth="55.00001525878906" text="Quant" />
+            <TableColumn fx:id="tableColumnValueTotal" prefWidth="94.99998474121094" text="Valor R$" />
+        </columns>
+      </TableView>
    </children>
 </Pane>

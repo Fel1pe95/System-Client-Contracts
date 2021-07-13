@@ -54,11 +54,12 @@ public class MainViewController implements Initializable {
 	}
 
 	@FXML
-	public void onButtonClientDataAction() {
+	public void onButtonClientDataAction(ActionEvent event) {
 		LoadView("ClientDataView.fxml", (ClientDataViewController controller) -> {
 			controller.setService(new ClientService());
 		});
-	}
+		
+		}
 
 	@FXML
 	public void onButtonContractUpdateAction() {
@@ -110,6 +111,8 @@ public class MainViewController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		setImage("logo.jpg", logo);
+	
+		
 
 	}
 
