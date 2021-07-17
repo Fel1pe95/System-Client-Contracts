@@ -15,13 +15,14 @@
 
 <Pane prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.NewContractViewController">
    <children>
-      <GridPane layoutX="8.0" layoutY="22.0" prefHeight="218.0" prefWidth="384.0">
+      <GridPane layoutX="8.0" layoutY="22.0" prefHeight="225.0" prefWidth="384.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.0" minWidth="10.0" prefWidth="122.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="286.0" minWidth="10.0" prefWidth="221.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="286.0" minWidth="10.0" prefWidth="44.0" />
         </columnConstraints>
         <rowConstraints>
+            <RowConstraints maxHeight="102.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="102.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="118.0" minHeight="0.0" prefHeight="41.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="149.0" minHeight="0.0" prefHeight="40.0" vgrow="SOMETIMES" />
@@ -29,17 +30,17 @@
             <RowConstraints maxHeight="171.0" minHeight="0.0" prefHeight="46.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Matricula do client:" />
-            <TextField fx:id="txtRegistration" GridPane.columnIndex="1" />
-            <TextField fx:id="txtProductId" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="txtProductQuantity" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="Data de inicio:" GridPane.rowIndex="3" />
-            <DatePicker fx:id="datePickerInitialDate" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="Data final:" GridPane.rowIndex="4" />
-            <DatePicker fx:id="datePickerFinalDate" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label text="Codigo do produto:" GridPane.rowIndex="1" />
-            <Label text="Quantidade:" GridPane.rowIndex="2" />
-            <Button fx:id="btAddProduct" mnemonicParsing="false" onAction="#onBtAddProductAction" prefHeight="20.0" prefWidth="30.0" style="-fx-background-color: #FFA500;" text="+" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Label text="Matricula do client:" GridPane.rowIndex="1" />
+            <TextField fx:id="txtRegistration" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtProductId" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtProductQuantity" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Data de inicio:" GridPane.rowIndex="4" />
+            <DatePicker fx:id="datePickerInitialDate" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="Data final:" GridPane.rowIndex="5" />
+            <DatePicker fx:id="datePickerFinalDate" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label text="Codigo do produto:" GridPane.rowIndex="2" />
+            <Label text="Quantidade:" GridPane.rowIndex="3" />
+            <Button fx:id="btAddProduct" mnemonicParsing="false" onAction="#onBtAddProductAction" prefHeight="20.0" prefWidth="30.0" style="-fx-background-color: #FFA500;" text="+" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -50,18 +51,19 @@
                   <Insets left="5.0" right="5.0" />
                </padding>
             </Button>
+            <Label text="N° do contrato:" />
+            <TextField fx:id="txtContractId" editable="false" GridPane.columnIndex="1" />
          </children>
       </GridPane>
-      <Label fx:id="erroMenssage" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="446.0" prefHeight="42.0" prefWidth="316.0" text="Mensagem de erro!" textAlignment="CENTER" textFill="#f20404">
+      <Label fx:id="erroMenssage" alignment="CENTER" contentDisplay="CENTER" layoutX="43.0" layoutY="458.0" prefHeight="42.0" prefWidth="316.0" text="Mensagem de erro!" textAlignment="CENTER" textFill="#f20404">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="btSave" layoutX="130.0" layoutY="421.0" mnemonicParsing="false" onAction="#onBtSaveAction" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #FFA500;" text="Salvar" />
-      <Button fx:id="btCancel" layoutX="214.0" layoutY="421.0" mnemonicParsing="false" onAction="#onBtCancelAction" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #FFA500;" text="Cancelar" />
-      <Label layoutX="14.0" layoutY="380.0" text="Valor do contrato:" />
-      <TextField fx:id="txtContractValue" layoutX="126.0" layoutY="376.0" prefHeight="25.0" prefWidth="220.0" />
-      <TableView fx:id="tableViewLocations" layoutX="40.0" layoutY="240.0" prefHeight="118.0" prefWidth="321.0">
+      <Button fx:id="btSave" layoutX="126.0" layoutY="434.0" mnemonicParsing="false" onAction="#onBtSaveAction" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #FFA500;" text="Salvar" />
+      <Button fx:id="btCancel" layoutX="214.0" layoutY="434.0" mnemonicParsing="false" onAction="#onBtCancelAction" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #FFA500;" text="Cancelar" />
+      <Label layoutX="75.0" layoutY="401.0" text="Total:" />
+      <TableView fx:id="tableViewLocations" layoutX="41.0" layoutY="269.0" prefHeight="118.0" prefWidth="321.0">
         <columns>
           <TableColumn fx:id="tableColumnCod" prefWidth="49.0" text="Cod" />
           <TableColumn fx:id="tableColumnProduct" prefWidth="101.0" text="Produto" />
@@ -69,5 +71,6 @@
             <TableColumn fx:id="tableColumnValueTotal" prefWidth="94.99998474121094" text="Valor R$" />
         </columns>
       </TableView>
+      <Label fx:id="labelTotalValue" layoutX="126.0" layoutY="401.0" prefHeight="17.0" prefWidth="162.0" />
    </children>
 </Pane>

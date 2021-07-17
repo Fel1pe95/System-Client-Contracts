@@ -10,6 +10,8 @@ import java.util.List;
 
 import db.DB;
 import db.DBException;
+import gui.util.Alerts;
+import javafx.scene.control.Alert.AlertType;
 import model.dao.ContractsDao;
 import model.entities.Contracts;
 
@@ -26,7 +28,7 @@ public class ContractsJDBC implements ContractsDao {
 		PreparedStatement st = null;
 		try {
 			st = conn.prepareStatement(
-					"INSERT INTo contracts  (idContracts, clientId, initialDate, finalDate, totalValue) VALUES (?, ?, ?, ?)",
+					"INSERT INTo contracts  (idContracts, clientId, initialDate, finalDate, totalValue) VALUES (?, ?, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
 			st.setInt(1, obj.getContractId());
 			st.setInt(2, obj.getClientId());
@@ -37,9 +39,10 @@ public class ContractsJDBC implements ContractsDao {
 			int rowsaffecteds = st.executeUpdate();
 
 			if (rowsaffecteds > 0) {
-				System.out.println("rows affecteds: " + rowsaffecteds);
+				Alerts.showAlert("Novo Contrato", null, "Contrato estabelecido com sucesso!", AlertType.INFORMATION);
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new DBException("unexpected Error! no rows Affected!");
 		} finally {
 			DB.closeStatement(st);

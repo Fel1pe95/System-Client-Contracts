@@ -169,6 +169,9 @@ public class ClientDataViewController implements Initializable {
 			try {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
 				Pane newPane = loader.load();
+				NewContractViewController controllerView = loader.getController();
+				controllerView.setClient(obj);
+				controllerView.updateFormData();
 				Scene scene = new Scene(newPane);
 				Stage stage = new Stage();
 				stage.setScene(scene);

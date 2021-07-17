@@ -1,6 +1,7 @@
 package model.entities;
 
 import java.util.Date;
+import java.util.List;
 
 public class Contracts {
 
@@ -9,6 +10,8 @@ public class Contracts {
 	private Date initialDate;
 	private Date finalDate;
 	private Double totalValue;
+	
+	private List<Locations> list;
 
 	public Contracts() {
 		super();
@@ -61,6 +64,10 @@ public class Contracts {
 
 	public void setTotalValue(Double totalValue) {
 		this.totalValue = totalValue;
+	}
+	
+	public void addLocationOnContract(Locations location) {
+		list.add(location);
 	}
 
 	@Override
