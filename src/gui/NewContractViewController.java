@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
-
 import gui.util.Alerts;
 import gui.util.Constraints;
 import gui.util.Utils;
@@ -99,7 +98,10 @@ public class NewContractViewController implements Initializable {
 				|| txtProductQuantity.getText() == "") {
 			erroMenssage.setText("Necesario codigo e quantidade do produto!");
 		} else {
+			
 			updateTableView();
+			txtProductId.setText("");
+			txtProductQuantity.setText("");
 			erroMenssage.setText("");
 		}
 		double totalValue = 0;

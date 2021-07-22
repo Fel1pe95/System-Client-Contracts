@@ -15,4 +15,9 @@ public class LocationsService {
 			dao.insert(loc);
 		}
 	}
+	
+	public List<Locations> findAll(Integer id){
+		return dao.findAllByContractId(id);
+	}
+	
 }

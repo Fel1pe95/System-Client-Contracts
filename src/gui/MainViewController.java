@@ -20,6 +20,8 @@ import model.service.ClientService;
 import model.service.ProductService;
 
 public class MainViewController implements Initializable {
+	
+	
 	@FXML
 	private ImageView logo;
 	@FXML
@@ -54,8 +56,8 @@ public class MainViewController implements Initializable {
 	}
 
 	@FXML
-	public void onButtonClientDataAction(ActionEvent event) {
-		LoadView("ClientDataView.fxml", (ClientDataViewController controller) -> {
+	public void onButtonClientDataAction() {
+		LoadView("/gui/ClientDataView.fxml", (ClientDataViewController controller) -> {
 			controller.setService(new ClientService());
 		});
 		
@@ -67,7 +69,7 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	private void onButtonProductConsultAction() {
-		LoadView("ProductDataView.fxml", (ProductDataViewController controller) -> {
+		LoadView("/gui/ProductDataView.fxml", (ProductDataViewController controller) -> {
 			controller.setService(new ProductService());
 		});
 	}

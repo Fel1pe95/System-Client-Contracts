@@ -28,9 +28,9 @@
             <TextField fx:id="txtName" GridPane.columnIndex="1" />
             <TextField fx:id="txtId" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="txtValue" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label textFill="#f50707" GridPane.columnIndex="2" />
-            <Label textFill="#f80101" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Label textFill="#e40606" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label fx:id="txtErrorName" textFill="#f50707" GridPane.columnIndex="2" />
+            <Label fx:id="txtErrorId" textFill="#f80101" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label fx:id="txtErrorValue" textFill="#e40606" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <Button fx:id="btSave" layoutX="81.0" layoutY="401.0" mnemonicParsing="false" onAction="#onBtSaveAction" text="Cadastrar" />

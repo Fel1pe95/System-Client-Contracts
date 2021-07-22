@@ -15,5 +15,5 @@ public interface LocationsDao {
 
 	Contracts findById(Integer Id);
 
-	List<Locations> findAllByIdContract(Integer id);
+	List<Locations> findAllByContractId(Integer id);
 }

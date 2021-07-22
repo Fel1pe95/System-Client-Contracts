@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <Pane fx:id="MainRightPaneNewClient" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.NewClientViewController">
    <children>
@@ -31,10 +32,22 @@
             <TextField fx:id="txtEmail" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="txtCpf" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="txtRegistration" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label textFill="#eb0909" GridPane.columnIndex="2" />
-            <Label textFill="#eb0909" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Label textFill="#eb0909" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Label textFill="#eb0909" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label fx:id="txtErrorName" textFill="#eb0909" GridPane.columnIndex="2">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Label fx:id="txtErrorEmail" textFill="#eb0909" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Label fx:id="txtErrorCpf" textFill="#eb0909" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Label fx:id="txtErrorRegistration" textFill="#eb0909" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
          </children>
       </GridPane>
       <Button fx:id="btSave" layoutX="86.0" layoutY="363.0" mnemonicParsing="false" onAction="#onBtSaveAction" text="Cadastrar" />

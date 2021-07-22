@@ -1,5 +1,6 @@
 package model.entities;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +11,8 @@ public class Contracts {
 	private Date initialDate;
 	private Date finalDate;
 	private Double totalValue;
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
 	private List<Locations> list;
 
@@ -103,8 +106,8 @@ public class Contracts {
 
 	@Override
 	public String toString() {
-		return "ContractId:" + contractId + "ClientID: "+ clientId + ", initialDate:" + initialDate + ", finalDate:" + finalDate
-				+ ", totalValue:" + String.format("%.2f", totalValue);
+		return "Numero do contrato: " + contractId + "\nMatricula do cliente: "+ clientId + "\nData Inicial:" +sdf.format(initialDate) + "\nData final:" + sdf.format(finalDate)
+				+ "\nValor total:" + String.format("%.2f", totalValue);
 	}
 
 }

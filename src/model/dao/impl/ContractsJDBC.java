@@ -123,7 +123,8 @@ public class ContractsJDBC implements ContractsDao {
 			PreparedStatement st = null;
 			ResultSet rs = null;
 			try {
-				st = conn.prepareStatement("SELECT * FROM client");
+				st = conn.prepareStatement("SELECT * FROM contracts WHERE clientId = ?");
+				st.setInt(1, id);
 				rs = st.executeQuery();
 				List<Contracts> list = new ArrayList<>();
 				while (rs.next()) {
@@ -142,7 +143,7 @@ public class ContractsJDBC implements ContractsDao {
 	
 	public Contracts InstatiateContract(ResultSet rs) throws SQLException {
 		Contracts obj = new Contracts();
-		obj.setContractId(rs.getInt("idConstracts"));
+		obj.setContractId(rs.getInt("idContracts"));
 		obj.setClientId(rs.getInt("clientId"));
 		obj.setInitialDate(new java.util.Date(rs.getTimestamp("initialDate").getTime()));
 		obj.setFinalDate(new java.util.Date(rs.getTimestamp("finalDate").getTime()));

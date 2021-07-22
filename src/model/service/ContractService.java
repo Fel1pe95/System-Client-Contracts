@@ -1,5 +1,7 @@
 package model.service;
 
+import java.util.List;
+
 import model.dao.ContractsDao;
 import model.dao.DaoFactory;
 import model.entities.Contracts;
@@ -19,5 +21,9 @@ public class ContractService {
 	}
 	public Contracts findById(Integer id){
 		return dao.findById(id);
+	}
+	
+	public List<Contracts> findAll(Integer id) {
+		return dao.findAllByIdClient(id);
 	}
 }
