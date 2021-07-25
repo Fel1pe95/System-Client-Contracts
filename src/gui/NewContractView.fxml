@@ -62,15 +62,17 @@
       </Label>
       <Button fx:id="btSave" layoutX="126.0" layoutY="434.0" mnemonicParsing="false" onAction="#onBtSaveAction" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #FFA500;" text="Salvar" />
       <Button fx:id="btCancel" layoutX="214.0" layoutY="434.0" mnemonicParsing="false" onAction="#onBtCancelAction" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #FFA500;" text="Cancelar" />
-      <Label layoutX="75.0" layoutY="401.0" text="Total:" />
+      <Label layoutX="75.0" layoutY="401.0" text="Diária" />
       <TableView fx:id="tableViewLocations" layoutX="41.0" layoutY="269.0" prefHeight="118.0" prefWidth="321.0">
         <columns>
           <TableColumn fx:id="tableColumnCod" prefWidth="49.0" text="Cod" />
-          <TableColumn fx:id="tableColumnProduct" prefWidth="101.0" text="Produto" />
-            <TableColumn fx:id="tableColumnQuantity" prefWidth="55.00001525878906" text="Quant" />
-            <TableColumn fx:id="tableColumnValueTotal" prefWidth="94.99998474121094" text="Valor R$" />
+          <TableColumn fx:id="tableColumnProduct" prefWidth="123.0" text="Produto" />
+            <TableColumn fx:id="tableColumnQuantity" prefWidth="64.0" text="Quant" />
+            <TableColumn fx:id="tableColumnValueTotal" prefWidth="84.0" text="Diária R$" />
         </columns>
       </TableView>
-      <Label fx:id="labelTotalValue" layoutX="126.0" layoutY="401.0" prefHeight="17.0" prefWidth="162.0" />
+      <Label fx:id="labelTotalDaily" layoutX="126.0" layoutY="401.0" prefHeight="17.0" prefWidth="70.0" />
+      <Label layoutX="208.0" layoutY="401.0" text="Total:" />
+      <Label fx:id="labelTotalValue" layoutX="249.0" layoutY="401.0" prefHeight="17.0" prefWidth="70.0" />
    </children>
 </Pane>

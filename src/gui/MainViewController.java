@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
-
 import gui.util.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,8 +19,7 @@ import model.service.ClientService;
 import model.service.ProductService;
 
 public class MainViewController implements Initializable {
-	
-	
+
 	@FXML
 	private ImageView logo;
 	@FXML
@@ -60,8 +58,8 @@ public class MainViewController implements Initializable {
 		LoadView("/gui/ClientDataView.fxml", (ClientDataViewController controller) -> {
 			controller.setService(new ClientService());
 		});
-		
-		}
+
+	}
 
 	@FXML
 	public void onButtonContractUpdateAction() {
@@ -113,8 +111,6 @@ public class MainViewController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		setImage("logo.jpg", logo);
-	
-		
 
 	}
 

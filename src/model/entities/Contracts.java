@@ -1,6 +1,9 @@
 package model.entities;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 
@@ -11,16 +14,16 @@ public class Contracts {
 	private Date initialDate;
 	private Date finalDate;
 	private Double totalValue;
-	
+
 	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-	
+
 	private List<Locations> list;
 
 	public Contracts() {
 		super();
 	}
 
-	public Contracts(Integer contractId,Integer clientId, Date initialDate, Date finalDate, Double totalValue) {
+	public Contracts(Integer contractId, Integer clientId, Date initialDate, Date finalDate, Double totalValue) {
 		super();
 		this.contractId = contractId;
 		this.clientId = clientId;
@@ -68,9 +71,21 @@ public class Contracts {
 	public void setTotalValue(Double totalValue) {
 		this.totalValue = totalValue;
 	}
-	
+
 	public void addLocationOnContract(Locations location) {
 		list.add(location);
+	}
+
+	public Double totalValueContract(Contracts contract, Double totalValue) {
+
+		LocalDate initialDate = contract.getInitialDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		LocalDate finalDate = contract.getFinalDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+		long totalOfDays = ChronoUnit.DAYS.between(initialDate, finalDate);
+
+		Double totalDaily = totalValue * totalOfDays;
+
+		return totalDaily;
 	}
 
 	@Override
@@ -106,8 +121,9 @@ public class Contracts {
 
 	@Override
 	public String toString() {
-		return "Numero do contrato: " + contractId + "\nMatricula do cliente: "+ clientId + "\nData Inicial:" +sdf.format(initialDate) + "\nData final:" + sdf.format(finalDate)
-				+ "\nValor total:" + String.format("%.2f", totalValue);
+		return "\nNumero do contrato: " + contractId + "\nMatricula do cliente: " + clientId + "\nData Inicial:"
+				+ sdf.format(initialDate) + "\nData final:" + sdf.format(finalDate) + "\nValor total:"
+				+ String.format("%.2f", totalValue);
 	}
 
 }

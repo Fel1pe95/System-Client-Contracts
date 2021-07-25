@@ -20,7 +20,7 @@
         <columns>
           <TableColumn fx:id="tableColumnQuantity" prefWidth="81.0" text="Quant." />
           <TableColumn fx:id="tableColumnProductName" prefWidth="190.0" text="Produto" />
-            <TableColumn fx:id="tableColumnTotalValue" prefWidth="98.0" text="Valor total" />
+            <TableColumn fx:id="tableColumnTotalValue" prefWidth="98.0" text="Diária R$" />
         </columns>
       </TableView>
    </children>

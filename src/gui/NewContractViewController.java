@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
+
 import gui.util.Alerts;
 import gui.util.Constraints;
 import gui.util.Utils;
@@ -58,6 +59,8 @@ public class NewContractViewController implements Initializable {
 	@FXML
 	private DatePicker datePickerFinalDate;
 	@FXML
+	private Label labelTotalDaily;
+	@FXML
 	private Label labelTotalValue;
 	@FXML
 	private Label erroMenssage;
@@ -94,11 +97,12 @@ public class NewContractViewController implements Initializable {
 
 	@FXML
 	public void onBtAddProductAction() {
+		
 		if (txtProductId.getText() == null || txtProductId.getText() == "" || txtProductQuantity.getText() == null
 				|| txtProductQuantity.getText() == "") {
 			erroMenssage.setText("Necesario codigo e quantidade do produto!");
 		} else {
-			
+
 			updateTableView();
 			txtProductId.setText("");
 			txtProductQuantity.setText("");
@@ -108,7 +112,9 @@ public class NewContractViewController implements Initializable {
 		for (Locations loc : list) {
 			totalValue += loc.getTotalValue();
 		}
-		labelTotalValue.setText(String.format("%.2f" + " R$", totalValue));
+
+		labelTotalDaily.setText(String.format("%.2f" + " R$", totalValue));
+		labelTotalValue.setText(String.format("%.2f", contractsEntity.getTotalValue()));
 
 	}
 
@@ -154,21 +160,24 @@ public class NewContractViewController implements Initializable {
 	}
 
 	public Contracts instantiateContract() {
+		
 
-		Integer contractId = Integer.parseInt(txtContractId.getText().toString());
-		Integer clientId = Integer.parseInt(txtRegistration.getText().toString());
+		contractsEntity.setContractId(Integer.parseInt(txtContractId.getText().toString()));
+		contractsEntity.setClientId(Integer.parseInt(txtRegistration.getText().toString()));
 		Instant initialInstant = Instant.from(datePickerInitialDate.getValue().atStartOfDay(ZoneId.systemDefault()));
-		Date initialDate = Date.from(initialInstant);
+		contractsEntity.setInitialDate(Date.from(initialInstant));
 		Instant finallInstant = Instant.from(datePickerFinalDate.getValue().atStartOfDay(ZoneId.systemDefault()));
-		Date finalDate = Date.from(finallInstant);
-
-		double totalValue = 0;
-
+		contractsEntity.setFinalDate(Date.from(finallInstant));
+	
+		double dailyValue = 0;
 		for (Locations loc : list) {
-			totalValue += loc.getTotalValue();
+			dailyValue += loc.getTotalValue();
 		}
-
-		return new Contracts(contractId, clientId, initialDate, finalDate, totalValue);
+		
+		Double total = contractsEntity.totalValueContract(contractsEntity, dailyValue);
+		contractsEntity.setTotalValue(total);
+		
+		return contractsEntity;
 
 	}
 
